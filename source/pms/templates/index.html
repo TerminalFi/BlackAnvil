@@ -1,0 +1,111 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load django_tables2 %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-sm text-center">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">{% trans 'Total Projects' %}</h5>
+                <h1>{{ total_vulns }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm text-center">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">{% trans 'Total Hours' %}</h5>
+                <h1>{{ project_hours }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm text-center">
+        <div id="accordionNotes">
+            <div class="card mb-0">
+                <div class="card-header" id="headingNotes" data-toggle="collapse" data-target="#collapseNotes" aria-expanded="true" aria-controls="collapseNotes">
+                    <a class="card-title">{% trans 'Functions' %}</a>
+                </div>
+
+                <div id="collapseNotes" class="collapse" aria-labelledby="headingNotes" data-parent="#accordionNotes">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm text-center">    
+        <div class="card-body">
+            {% render_table table %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+  <script>
+    var token = '{{ csrf_token }}';
+    function alertTimeout(wait){
+        setTimeout(function(){
+            $('.container.mt-3.side-15').children('.alert:first-child').remove()
+        }, wait);
+    }
+    bootstrap_alert = function() {
+    }
+    bootstrap_alert.success = function() {
+        $(".container.mt-3.side-15").prepend('<div class="alert alert-success alert-dismissable fade show" role="alert"> \
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button> \
+            Notes successfully updated! \
+        </div>');
+        alertTimeout(3000);
+    }
+    bootstrap_alert.download = function() {
+        $(".container.mt-3.side-15").prepend('<div class="alert alert-success alert-dismissable fade show" role="alert"> \
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button> \
+            Export being generated. Please be patient as this may take awhile. \
+        </div>');
+        alertTimeout(3000);
+    }
+    bootstrap_alert.error = function() {
+        $(".container.mt-3.side-15").prepend('<div class="alert alert-danger alert-dismissable fade show" role="alert"> \
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button> \
+            Error updating notes! \
+        </div>');
+        alertTimeout(3000);
+    }
+    function updateNote(note){
+        $.ajax({
+            headers: { "X-CSRFToken": token },
+            url: "",
+            type: 'POST',
+            data: jQuery.param({ "new_note": note }) ,
+            dataType: 'json',
+            success: function (response) {
+                bootstrap_alert['success']();
+                $("#project_notes").val(response.message);
+                $("#project_notes_new").val('');
+            },
+            error: function () {
+                bootstrap_alert.error();
+            }
+        }); 
+    }
+
+    $(".updateBtn").click(function(){
+        updateNote($("#project_notes_new").val());
+    });
+    $(".exportProject").click(function(){
+        bootstrap_alert.download();
+    });
+  </script>
+{% endblock %}
+
