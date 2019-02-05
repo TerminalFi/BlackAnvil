@@ -1,8 +1,13 @@
+from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Projects(models.Model):
+    project_charge_code = models.UUIDField(
+        editable=False,
+        default=uuid4,
+        verbose_name="Charge Code")
     project_name = models.CharField(
         max_length=100, unique=True, default=None, verbose_name='Project Name')
     client_name = models.CharField(
@@ -15,11 +20,30 @@ class Projects(models.Model):
         default=10, verbose_name='Total Hours')
     project_comments = models.TextField(
         max_length=25000, blank=True, verbose_name='Comments')
-    project_notes = models.TextField(
-        max_length=25000, blank=True, verbose_name='Notes')
 
     def __str__(self):
         return "%s" % (self.project_name)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['-id']
+
+
+class ProjectTester(models.Model):
+    project_id = models.ForeignKey(Projects, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    assigned_hours = models.IntegerField(
+        default=0, verbose_name='Assigned Hours')
+
+    class Meta:
+        ordering = ['-id']
+
+class TesterWork(models.Model):
+    project_tester_id = models.ForeignKey(ProjectTester, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    task = models.TextField(
+        max_length=255, verbose_name='Task')
+    consumed_hours = models.IntegerField(
+        default=0, verbose_name='Hours')
+
+    class Meta:
+        ordering = ['-id']

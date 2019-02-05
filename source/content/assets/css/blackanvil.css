@@ -554,5 +554,11 @@ a:focus, a:hover, a:active {
 }
 
 button.bg-primary:hover {
-background-color: #353535!important;
+  background-color: #353535!important;
+}
+.btn.in-table {
+    border:none;
+    background-color: transparent;
+    padding: 0px;
+    width: 100%;
 }

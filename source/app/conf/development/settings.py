@@ -16,6 +16,7 @@ ALLOWED_HOSTS = []
 SITE_ID = 1
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -60,6 +61,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'auth_extras': 'app.templatetags.auth_extras',
+            },
         },
     },
 ]
@@ -97,7 +101,7 @@ ENABLE_USER_ACTIVATION = True
 DISABLE_USERNAME = False
 LOGIN_VIA_EMAIL = False
 LOGIN_VIA_EMAIL_OR_USERNAME = True
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'pms:index'
 LOGOUT_REDIRECT_URL = 'accounts:log_in'
 LOGIN_URL = 'accounts:log_in'
 USE_REMEMBER_ME = True
