@@ -6,31 +6,44 @@
 {% load i18n %}
 
 {% block content %}
-
-<div class="row justify-content-center">
-    <div class="col-sm text-center">
-        <div class="card card-signin mt-5">
-            <div class="card-body">
-                <h5 class="card-title text-center">{% trans 'Total Projects' %}</h5>
-                <h1>{{ total_projects }}</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm text-center">
+            <div class="card card-signin mt-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{% trans 'Total Projects' %}</h5>
+                    <h1>{{ total_projects }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm text-center">
+            <div class="card card-signin mt-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{% trans 'Total Hours' %}</h5>
+                    <h1>{{ total_hours }}</h1>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm text-center">
-        <div class="card card-signin mt-5">
-            <div class="card-body">
-                <h5 class="card-title text-center">{% trans 'Total Hours' %}</h5>
-                <h1>{{ total_hours }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-sm text-center mt-3">
+            <div id="accordionProjects">
+                <div class="card mt-3">
+                    <div class="card-header" id="headingProjects" data-toggle="collapse" data-target="#collapseProjects" aria-expanded="true" aria-controls="collapseProjects">
+                        <a class="card-title"><span class="text-center font-weight-bold">{% trans 'Projects' %}</span></a>
+                    </div>
+                    <div id="collapseProjects" class="collapse show" aria-labelledby="headingProjects" data-parent="#accordionProjects">
+                        <div class="card-body">
+                            <div class="mx-auto text-center">
+                                {% render_table table %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row justify-content-center">
-    <div class="col-sm text-center mt-3">
-        {% render_table table %}
-    </div>
-</div>
-
 {% endblock %}
 
 {% block javascript %}

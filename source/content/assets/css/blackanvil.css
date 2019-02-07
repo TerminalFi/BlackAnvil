@@ -533,6 +533,12 @@ a:focus, a:hover, a:active {
   border-color: #000;
 }
 
+.btn-primary:disabled {
+color: #fff;
+background-color: #bebebe;
+border-color: #bebebe;
+}
+
 .btn-secondary {
   background-color: #2C3E50;
   border-color: #2C3E50;
@@ -551,4 +557,15 @@ button.bg-primary:hover {
     background-color: transparent;
     padding: 0px;
     width: 100%;
+}
+.card-header:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f103";
+    float: right;
+    color: grey;
+}
+
+.card-header[aria-expanded="true"]:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f102";
 }

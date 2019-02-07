@@ -3,6 +3,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserFullName(User):
+    class Meta:
+        proxy = True
+
+    def __str__(self):
+        return "{} ({})".format(self.get_full_name(), self.username)
+
 class Projects(models.Model):
     project_charge_code = models.UUIDField(
         unique=True,

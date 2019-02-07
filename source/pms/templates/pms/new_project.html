@@ -10,23 +10,15 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
-          <h5 class="card-title text-center">{% trans 'Sign In' %}</h5>
+          <h5 class="card-title text-center">{% trans 'Create a Project' %}</h5>
           <form class="form-signin" method="Post">
               {% csrf_token %}
               {% bootstrap_form form %}
             <div class="form-actions">
-              <button class="btn btn-primary btn-lg text-uppercase" type="submit">{% trans 'Login' %}</button>
+              <button class="btn btn-primary btn-lg text-uppercase" type="submit">{% trans 'Create' %}</button>
             </div>
           </form>
         </div>
-          <ul>
-              <li>
-                  <a href="{% url 'accounts:restore_password' %}">{% trans 'Forgot your password?' %}</a>
-              </li>
-              <li>
-                  <a href="{% url 'accounts:remind_username' %}">{% trans 'Forgot your username?' %}</a>
-              </li>
-          </ul>
       </div>
     </div>
   </div>

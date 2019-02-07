@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Projects, ProjectTester
+from .models import Projects, ProjectTester, UserFullName, TesterWork
 
 
 class ProjectForm(ModelForm):
@@ -22,6 +22,8 @@ class ProjectForm(ModelForm):
 
 
 class ProjectTesterForm(ModelForm):
+    user_id = forms.ModelChoiceField(
+        queryset=UserFullName.objects.all(), label="Username")
 
     class Meta:
         model = ProjectTester
@@ -29,3 +31,14 @@ class ProjectTesterForm(ModelForm):
         exclude = ['project_id']
         labels = {'user_id': 'User ID',
                   'assigned_hours': 'Assigned Hours'}
+
+
+class AssignmentChargeForm(ModelForm):
+    charge_code = forms.CharField(label="Charge Code", required=True)
+
+    class Meta:
+        model = TesterWork
+        fields = ['task', 'consumed_hours']
+        exclude = ['project_id', 'user_id']
+        labels = {'user_id': 'User ID',
+                  'consumed_hours': 'Hours'}

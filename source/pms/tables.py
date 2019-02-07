@@ -39,3 +39,29 @@ class TesterWorkTable(tables.Table):
         sequence = ('id', 'user_id', 'task',
                     'consumed_hours')
         exclude = ['project_id']
+
+
+class ProjectAssignmentTable(tables.Table):
+    user_id = tables.Column(verbose_name='User ID')
+    project_id = tables.Column(verbose_name='Project Name')
+
+    class Meta:
+        model = ProjectTester
+        template_name = 'tables/project_assignment_table.html'
+        row_attrs = {
+            'data-id': lambda record: record.pk
+        }
+        sequence = ('id', 'project_id',
+                    'assigned_hours')
+        exclude = ['user_id']
+
+
+class AssignmentWorkTable(tables.Table):
+    project_id = tables.Column(verbose_name='Project Name')
+
+    class Meta:
+        model = TesterWork
+        template_name = 'tables/tester_work_table.html'
+        sequence = ('id', 'project_id', 'task',
+                    'consumed_hours')
+        exclude = ['user_id']

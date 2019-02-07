@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import (ProjectIndexView, ProjectManageView,
                     NewProjectView, DeleteProjectView, ProjectAssignView,
-                    UpdateProjectView, DeleteProjectAssignView)
+                    UpdateProjectView, DeleteProjectAssignView,
+                    AssignmentIndexView, AssignmentChargeView,
+                    validate_charge_code)
 
 app_name = 'pms'
 
@@ -19,4 +21,21 @@ urlpatterns = [
          UpdateProjectView.as_view(), name='update_project'),
     path('projects/delete/<int:pk>/',
          DeleteProjectView.as_view(), name='delete_project'),
+
+
+
+
+
+
+    path('projects/assignments/',
+         AssignmentIndexView.as_view(), name='assignment_index'),
+    path('projects/assignments/<int:pk>/charge/',
+         AssignmentChargeView.as_view(), name='assignment_charge'),
+
+
+
+    path('projects/validate/charge/code/',
+         validate_charge_code, name='validate_charge'),
+
+
 ]
