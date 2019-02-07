@@ -397,16 +397,6 @@ section#contact{
   color: #888;
 }
 
-#sendmessage {
-  color: #c5b155;
-  border: 1px solid #7cc576;
-  display: none;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
 .quote-right {
   font-style: normal;
   width: 68px;

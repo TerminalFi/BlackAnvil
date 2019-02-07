@@ -1,0 +1,27 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load staticfiles %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">{% trans 'Assign Tester' %}</h5>
+            <form class="form-signin" method="Post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+              <input type="hidden" name="project_id" value="{{ project_id }}">
+              <input type="hidden" name="next" value="{% url 'pms:manage_project' project_id %}">
+              <div class="form-actions">
+                <button class="btn btn-primary btn-lg text-uppercase" type="submit">{% trans 'Assign' %}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+

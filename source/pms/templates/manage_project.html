@@ -11,7 +11,7 @@
     <div class="col-sm text-center">
         <div class="card card-signin mt-5">
             <div class="card-body">
-                <h5 class="card-title text-center">{% trans 'Total Hours' %}</h5>
+                <h5 class="card-title text-center">{% trans 'Project Hours' %}</h5>
                 <h1>{{ total_hours }}</h1>
             </div>
         </div>
@@ -19,17 +19,55 @@
     <div class="col-sm text-center">
         <div class="card card-signin mt-5">
             <div class="card-body">
+                <h5 class="card-title text-center">{% trans 'Assigned Hours' %}</h5>
+                <h1>{{ assigned_hours }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm text-center">
+        <div class="card card-signin mt-5">
+            <div class="card-body">
                 <h5 class="card-title text-center">{% trans 'Consumed Hours' %}</h5>
-                <h1>{{ total_hours }}</h1>
+                <h1>{{ consumed_hours }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm text-center">
+        <div class="card card-signin mt-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">{% trans 'Remaining Hours' %}</h5>
+                <h1>{{ remaining_hours }}</h1>
             </div>
         </div>
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-sm text-center mt-3">
-        {% render_table table %}
+    <div class="col-sm text-center">
+        <div id="accordionFunctions">
+            <div class="card mt-3">
+                <div class="card-header" id="headingFunctions" data-toggle="collapse" data-target="#collapseFunctions" aria-expanded="true" aria-controls="collapseFunctions">
+                    <a class="card-title">{% trans 'Functions' %}</a>
+                </div>
+
+                <div id="collapseFunctions" class="collapse" aria-labelledby="headingFunctions" data-parent="#accordionFunctions">
+                    <div class="card-body">
+                        <div class="mx-auto text-center">
+                            <a class="btn btn-primary btn-lg text-uppercase" href="{% url 'pms:assign_project' project_id %}">{% trans 'Assign Work' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+{% for table in tables %}
+<div class="row justify-content-center">
+    <div class="col-sm text-center mt-3">
+            {% render_table table %}
+    </div>
+</div>
+{% endfor %}
+
 
 {% endblock %}
 
@@ -88,6 +126,7 @@
     $(".exportProject").click(function(){
         bootstrap_alert.download();
     });
+    $('tr.row-container[data-i="product_id"]').remove();
   </script>
 {% endblock %}
 

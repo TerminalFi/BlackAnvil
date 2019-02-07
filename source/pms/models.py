@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Projects(models.Model):
     project_charge_code = models.UUIDField(
+        unique=True,
         editable=False,
         default=uuid4,
         verbose_name="Charge Code")
@@ -37,8 +38,10 @@ class ProjectTester(models.Model):
     class Meta:
         ordering = ['-id']
 
+
 class TesterWork(models.Model):
-    project_tester_id = models.ForeignKey(ProjectTester, on_delete=models.CASCADE)
+    project_id = models.ForeignKey(
+        Projects, to_field='project_charge_code', on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     task = models.TextField(
         max_length=255, verbose_name='Task')

@@ -70,10 +70,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(CONTENT_DIR, 'tmp/emails')
-EMAIL_HOST_USER = 'test@example.com'
-DEFAULT_FROM_EMAIL = 'test@example.com'
+
+EMAIL_HOST = 'smtp-relay.gmail.com'
+EMAIL_HOST_USER = 'zach@blackanvil.io'
+EMAIL_HOST_PASSWORD = 'ILOVEmytruck12!@'
+SERVER_EMAIL = 'zach@blackanvil.io'
+DEFAULT_FROM_EMAIL = 'zach@blackanvil.io'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 DATABASES = {
     'default': {

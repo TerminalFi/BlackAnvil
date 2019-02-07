@@ -6,10 +6,8 @@ from django.conf.urls.static import static
 from main.views import IndexPageView
 
 urlpatterns = [
+    path('', include('main.urls')),
     path('admin/', admin.site.urls),
-
-    path('', IndexPageView.as_view(), name='index'),
-
     path('i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('accounts.urls')),
     path('pms/', include('pms.urls')),
