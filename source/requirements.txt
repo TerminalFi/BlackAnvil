@@ -1,4 +1,4 @@
-django==2.1.5
+django==2.2.24
 django-tables2==2.0.4
 django-bootstrap4==0.0.7
 gunicorn==19.9.0
