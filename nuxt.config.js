@@ -41,8 +41,7 @@ export default {
 
     // Globally configure <nuxt-link> default active class.
     router: {
-        linkActiveClass: 'active',
-        base: '/BlackAnvil/'
+        linkActiveClass: 'active'
     },
 
     // Auto import components: https://go.nuxtjs.dev/config-components
