@@ -1,0 +1,24 @@
+{
+  "name": "quvia",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.8.3",
+    "nuxt": "^2.2.0",
+    "vue-backtotop": "^1.6.1",
+    "vue-carousel": "^0.18.0",
+    "vue-cool-lightbox": "^2.7.3"
+  },
+  "devDependencies": {
+    "fibers": "^5.0.0",
+    "sass": "^1.32.12",
+    "sass-loader": "^10.1.1"
+  }
+}
