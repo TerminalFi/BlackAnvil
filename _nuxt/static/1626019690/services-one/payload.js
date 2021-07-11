@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/services-one", {data:[{}],fetch:{},mutations:void 0});

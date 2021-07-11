@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog-right-sidebar", {data:[{}],fetch:{},mutations:void 0});
